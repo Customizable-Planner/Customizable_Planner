@@ -1,8 +1,13 @@
 # ve
 
+
 ## 시작은 가볍게
 ```
 각자 pull하고 push 하는 연습하세요~
+
+## OSS Project!
+
+
 
 ## Project setup
 ```
