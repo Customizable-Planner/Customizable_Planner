@@ -1,151 +1,82 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
+  <div id='main_board'>
+    <v-app>
+      <v-app-bar app color="green" dark flat>
+        <v-btn icon @click.stop="bDrawer = !bDrawer">
+            <v-icon>mdi-menu</v-icon>
+        </v-btn>
+        <v-toolbar-title>Customizable Planner</v-toolbar-title>
+      </v-app-bar>
+      <v-navigation-drawer absolute temporary v-model="bDrawer">
+        <v-toolbar flat height="70px">
+          <v-list>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="title">홍길동</v-list-item-title>
+                <v-list-item-subtitle v-text="age"></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-toolbar>
+        <v-divider></v-divider>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+        <v-list class="pt-3">
+          <v-list-item v-for="item in aMenu_items" :key="item.title" :href="item.link" >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+      <v-content>
+        <v-container>
+          <v-layout justify-center>
+            <v-card>
+              <v-flex>
+                <v-toolbar dense flat>
+                  <v-toolbar-title>Add your own planner!</v-toolbar-title>
+                  <v-spacer>
+                  </v-spacer>
+                  <v-btn icon>
+                    <v-icon>mdi-plus</v-icon>
+                  </v-btn>
+                </v-toolbar>
+              </v-flex>
+            </v-card>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  data () {
+    return {
+      age: 24,
+      bDrawer: false,
+      aMenu_items: [{
+        title: 'Check list',
+        icon: 'mdi-coffee',
+        link: '#'
+      },
+      {
+        title: 'Time table',
+        icon: 'mdi-apple',
+        link: '#'
+      },
+      {
+        title: 'Memo',
+        icon: 'mdi-facebook',
+        link: '#'
+      }
+      ]
+    }
+  }
 
-  data: () => ({
-    ecosystem: [
-      {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader'
-      },
-      {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify'
-      },
-      {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify'
-      }
-    ],
-    importantLinks: [
-      {
-        text: 'Documentation',
-        href: 'https://vuetifyjs.com'
-      },
-      {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com'
-      },
-      {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify'
-      },
-      {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs'
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify'
-      }
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com/components/api-explorer'
-      },
-      {
-        text: 'Select a layout',
-        href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-      }
-    ]
-  })
 }
 </script>
