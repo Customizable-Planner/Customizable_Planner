@@ -4,8 +4,7 @@
 ```
 각자 pull하고 push 하는 연습하세요~
 Kang -- 이번엔 올라가라
-branch JJ
-dd
+새 브랜치 KK
 ```
 ## OSS Project!
 ## Project setup
